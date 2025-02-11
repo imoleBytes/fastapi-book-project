@@ -1,0 +1,26 @@
+name: Auto merge
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  auto-merge:
+    name: Auto Merge PR
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - name: Auto Merge PRs
+        uses: peter-evans/enable-pull-request-automerge@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ github.event.pull_request.number }} # Options: merge, squash, rebase
+          merge-method: squash
+      - name: Auto Merge PRs
+        uses: peter-evans/auto-merge@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: squash
