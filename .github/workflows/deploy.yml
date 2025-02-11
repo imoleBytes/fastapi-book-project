@@ -6,6 +6,20 @@ on:
       - main
 
 jobs:
+  auto-merge:
+    name: Auto Merge PR
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - name: Auto Merge PRs
+        uses: pascalgn/automerge-action@v0.15.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: squash # Options: merge, squash, rebase
+          MERGE_LABELS: "automated"
+
   deploy:
     name: Deploy API
     runs-on: ubuntu-latest
