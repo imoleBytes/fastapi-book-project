@@ -26,5 +26,5 @@ jobs:
             git pull origin main
             source venv/bin/activate  # Activate virtual environment
             pip install -r requirements.txt
-            systemctl restart fastapi.service  # Restart FastAPI service
-            systemctl restart nginx  # Restart Nginx
+            sudo systemctl restart fastapi.service  # Restart FastAPI service
+            sudo systemctl restart nginx  # Restart Nginx
