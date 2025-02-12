@@ -55,26 +55,19 @@ async def update_book(book_id: int, book: Book) -> Book:
         content=db.update_book(book_id, book).model_dump(),
     )
 
-@router.get("/{book_id}", response_model=Book, status_code=status.HTTP_200_OK)
-async def get_book_by_ID(book_id: int) -> Book:
-    if book_id not in db.books:
-        return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={"details": "Book not found. this is a test!"})
-    
-    return JSONResponse(
-        status_code=status.HTTP_200_OK,
-        content=db.get_book(book_id).model_dump(),
-        # content=db.update_book(book_id, book).model_dump(),
-    )
-
-
 @router.delete("/{book_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_book(book_id: int) -> None:       
     db.delete_book(book_id)
     return JSONResponse(status_code=status.HTTP_204_NO_CONTENT, content=None)
 
 
-#######################################################
-# # to be removed after testing
-@router.get("/me/{name}", status_code=status.HTTP_200_OK)
-async def get_name(name: str) -> Book:
-    return JSONResponse(status_code=status.HTTP_200_OK, content={"name": name})
+# route to get a single book by id
+@router.get("/{book_id}", response_model=Book, status_code=status.HTTP_200_OK)
+async def get_book_by_ID(book_id: int) -> Book:
+    if book_id not in db.books:
+        return JSONResponse(status_code=status.HTTP_404_NOT_FOUND, content={"detail": "Book not found"})
+    
+    return JSONResponse(
+        status_code=status.HTTP_200_OK,
+        content=db.get_book(book_id).model_dump(),
+    )
