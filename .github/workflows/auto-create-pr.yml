@@ -2,8 +2,8 @@ name: Auto Create PR
 
 on:
   push:
-    branches:
-      - "feat/get-book-by-id" # Adjust based on your branch naming convention
+    branches-ignore:
+      - main # Adjust based on your branch naming convention
 
 jobs:
   create-pr:
