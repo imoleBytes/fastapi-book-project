@@ -1,4 +1,4 @@
-name: Test FastAPI Project
+name: Test FastAPI Project And Auto Merge
 
 on:
   pull_request:
