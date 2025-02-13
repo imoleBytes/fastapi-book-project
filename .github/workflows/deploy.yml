@@ -25,5 +25,6 @@ jobs:
             cd ~/fastapi-book-project
             git pull origin main
             source venv/bin/activate  # Activate virtual environment
+            pip install -r requirements.txt
             sudo systemctl restart fastapi.service  # Restart FastAPI service
             sudo systemctl restart nginx  # Restart Nginx
